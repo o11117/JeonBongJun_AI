@@ -1,0 +1,162 @@
+/* src/components/Nav.css */
+
+.navbar {
+    display: flex;
+    justify-content: space-between; /* 각 섹션(왼쪽, 중앙, 오른쪽)을 균등하게 분배 */
+    align-items: center;
+    padding: 12px 2rem; /* 상하 12px, 좌우 2rem 패딩 */
+    border-bottom: 1px solid #e0e0e0; /* 이미지의 얇은 하단 테두리 */
+    background-color: #ffffff; /* 흰색 배경 */
+    width: 100%;
+    box-sizing: border-box; /* 패딩이 너비에 영향을 주지 않도록 설정 */
+    transition: transform 0.3s ease;
+    font-family: 'Gowun Batang', 'Malgun Gothic', serif;
+}
+
+/* 모든 섹션에 공통 적용 */
+.nav-section {
+    display: flex;
+    align-items: center;
+}
+
+/* 왼쪽 섹션 (로고) */
+.nav-left {
+    flex: 1; /* 공간을 차지하도록 설정 */
+    justify-content: flex-start;
+}
+
+.nav-logo {
+    font-size: 1.6rem; /* 로고 폰트 크기 */
+    font-weight: bold;
+    width: 120px;
+    /* 이미지와 유사한 느낌의 폰트를 우선 적용, 없으면 기본 serif */
+    font-family: 'Gowun Batang', serif;
+    color: #5d4037; /* 이미지의 갈색 톤 로고 색상 */
+    text-decoration: none;
+}
+
+/* 중앙 섹션 (검색창) */
+.nav-center {
+    flex: 3; /* 중앙 섹션이 더 많은 공간을 차지하도록 설정 */
+    justify-content: center; /* 가운데 정렬 */
+    padding: 0 1rem; /* 좌우 다른 섹션과 간격 */
+}
+
+.search-container {
+    position: relative; /* 이 속성이 매우 중요합니다 */
+    display: flex;
+    align-items: center;
+    background-color: #f0f2f5; /* 밝은 회색 배경 */
+    border-radius: 20px; /* 둥근 모서리 */
+    padding: 0 10px;
+    margin-left: 20px;
+    width: 100%; /* 추가: 부모 요소의 너비를 최대한 활용 */
+    max-width: 600px; /* 추가: 최대 너비 설정 (필요시 조정 가능) */
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px 16px 10px 40px; /* 아이콘을 위한 왼쪽 패딩 */
+    border: 1px solid #ccc;
+    border-radius: 30px; /* 이미지처럼 둥근 모서리 */
+    font-size: 1rem;
+    box-sizing: border-box;
+    outline: none; /* 클릭 시 테두리 제거 */
+    font-family: 'Gowun Batang', 'Malgun Gothic', serif;
+}
+
+.search-input::placeholder {
+    color: #aaa;
+}
+
+.search-input:focus {
+    border-color: #888; /* 클릭 시 테두리 색상 */
+}
+
+.search-icon {
+    position: absolute;
+    left: 16px; /* 아이콘 위치 */
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa; /* 아이콘 색상 */
+    font-size: 1.1rem;
+}
+
+/* 오른쪽 섹션 (링크, 버튼) */
+.nav-right {
+    flex: 1.5; /* 공간 비율 설정 */
+    justify-content: flex-end; /* 오른쪽 정렬 */
+    gap: 2rem; /* 링크 그룹과 '입점' 버튼 사이 간격 */
+}
+
+.nav-links {
+    display: flex;
+    list-style: none; /* ul 태그의 점 제거 */
+    margin: 0;
+    padding: 0;
+    gap: 1.5rem; /* 각 링크 사이의 간격 */
+}
+
+.nav-links li a {
+    text-decoration: none; /* 밑줄 제거 */
+    color: #333; /* 기본 글자 색상 */
+    font-size: 1rem;
+    transition: color 0.2s;
+}
+
+.nav-links li a:hover {
+    color: #000;
+    font-weight: 500;
+}
+
+.nav-register-button {
+    padding: 10px 24px;
+    background-color: #493128; /* 이미지의 갈색 버튼 */
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 8px; /* 둥근 모서리 */
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    white-space: nowrap; /* '입점' 글자 줄바꿈 방지 */
+    font-family: 'Gowun Batang', 'Malgun Gothic', serif;
+}
+
+.nav-register-button:hover {
+    background-color: #2e1e19; /* 호버 시 약간 더 어두운 갈색 */
+}
+
+.search-results-dropdown {
+    position: absolute; /* 기준점(search-container)에 맞춰 절대 위치 */
+    top: 100%; /* input 바로 아래에 위치 (top: 40px; 등 고정값도 가능) */
+    left: 0;
+    right: 0;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    list-style-type: none; /* 기본 리스트 스타일 제거 */
+    margin: 8px 0 0; /* 검색창과 약간의 간격 */
+    padding: 0;
+    max-height: 300px; /* 최대 높이 지정 */
+    overflow-y: auto; /* 내용이 많으면 스크롤 */
+    z-index: 1000; /* 다른 요소들 위에 보이도록 z-index 설정 */
+    font-family: 'Gowun Batang', 'Malgun Gothic', serif;
+}
+
+.search-results-dropdown li {
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+}
+
+.search-results-dropdown li:hover {
+    background-color: #f5f5f5; /* 마우스 오버 시 배경색 변경 */
+}
+
+.search-results-dropdown li:not(:last-child) {
+    border-bottom: 1px solid #f0f0f0; /* 항목 간 구분선 */
+}

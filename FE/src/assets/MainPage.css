@@ -1,0 +1,77 @@
+/* src/assets/MainPage.css (상단 행 스타일 추가) */
+
+:root {
+    --theme-primary-brown: #8d6e63;
+    --theme-light-beige-bg: #F9F6F1;
+}
+
+.main-page-container {
+    width: 100%;
+    background-color: var(--theme-light-beige-bg);
+    display: flex;
+    flex-direction: column;
+    /* font-family: sans-serif; */
+    min-height: 100vh;
+}
+
+.dashboard-main { padding: 2rem; flex-grow: 1; }
+
+.dashboard-flex-container {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Gowun Batang', 'Malgun Gothic', serif;
+}
+
+.dashboard-main-content {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.dashboard-sidebar {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* ▼ 상단/하단 행 컨테이너 스타일을 하나로 통합 ▼ */
+.top-row-container,
+.bottom-row-container {
+    display: flex;
+    gap: 1.5rem;
+}
+
+/* ▼ 상단/하단 행 아이템 스타일을 하나로 통합 ▼ */
+.top-row-item,
+.bottom-row-item {
+    flex: 1;
+}
+
+/* ... 카드 및 제목 스타일은 이전과 동일 ... */
+.dashboard-card {
+    background-color: white; padding: 1.5rem; border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    position: relative; margin-top: 2.5rem;
+}
+
+.dashboard-card-title {
+    font-size: 1.25rem; font-weight: 700; color: #1f2937;
+    position: absolute; bottom: 100%; left: 0; margin-bottom: 0.5rem;
+}
+
+@media (max-width: 1023px) {
+    .dashboard-flex-container { flex-direction: column; }
+    .top-row-container, .bottom-row-container { flex-direction: column; }
+}
+
+.chart-wrapper {
+    width: 100%;
+    height: 100px; /* "투명한 액자"의 높이를 100px로 명확하게 지정 */
+    position: relative; /* 자식 요소가 이 액자를 기준으로 위치를 잡도록 설정 */
+}

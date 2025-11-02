@@ -1,0 +1,90 @@
+/* src/components/common/NewsModal.css */
+
+:root {
+    --theme-primary-brown: #8d6e63;
+    --theme-primary-brown-darker: #795548;
+    --theme-light-border: #e0e0e0;
+}
+
+:root {
+    --theme-primary-brown: #8d6e63;
+    --theme-primary-brown-darker: #795548;
+    --theme-light-border: #e0e0e0;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    width: 85vw;
+    height: 85vh;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    display: flex; /* 1. flex 활성화 */
+    flex-direction: column; /* 2. 수직 정렬 */
+    font-family: 'Gowun Batang', 'Malgun Gothic', serif;
+}
+
+.modal-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--theme-light-border);
+}
+
+.modal-header h2 {
+    margin: 0 0 0.5rem 0;
+    color: #333;
+}
+
+.modal-press {
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.modal-body {
+    padding: 1.5rem; /* 1. 텍스트를 위한 패딩 복원 */
+    overflow-y: auto; /* 2. 본문이 길면 스크롤 */
+    height: 85vh;
+    line-height: 1.7;
+    color: #222;
+}
+
+.modal-body p {
+    margin: 0;
+    /* 3. API의 줄바꿈 문자(\n)를 인식하고,
+       단어가 길어도 자동 줄바꿈되도록 설정 */
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.modal-footer {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--theme-light-border);
+    text-align: right;
+}
+
+.modal-close-button {
+    padding: 10px 24px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: var(--theme-primary-brown);
+    color: white;
+    transition: background-color 0.2s;
+}
+
+.modal-close-button:hover {
+    background-color: var(--theme-primary-brown-darker);
+}

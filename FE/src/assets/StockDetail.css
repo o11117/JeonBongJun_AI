@@ -1,0 +1,184 @@
+.sd-wrap {
+  max-width: 880px;
+  margin: 40px auto 120px;
+  padding: 0 16px 64px;
+  background: #faf7f1;
+  border: 1px solid #e6e0d6;
+  border-radius: 12px;
+  font-family: 'Gowun Batang', 'Malgun Gothic', serif;
+}
+
+.sd-skel,
+.sd-error { padding: 80px 0; text-align: center; color: #777; }
+
+.sd-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 18px 8px;
+  border-bottom: 1px solid #efe9df;
+}
+
+.sd-breadcrumb { color: #8c7f70; font-size: 13px; }
+
+.sd-title { padding: 18px; }
+.sd-name { font-family: "Times New Roman", serif; font-weight: 700; font-size: 28px; color: #1f1f1f; }
+.sd-ticker { font-size: 12px; color: #7a746b; margin-top: 4px; }
+.sd-price { font-size: 44px; font-weight: 800; margin-top: 8px; color: #1f1f1f; letter-spacing: -0.5px; }
+.sd-change { margin-top: 6px; font-weight: 700; }
+.sd-change.up { color: #c81d1d; }
+.sd-change.down { color: #1463c2; }
+
+.sd-chart-wrap {
+  margin: 8px 18px 0;
+  background: #fff;
+  border: 1px solid #efe9df;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.sd-chart { width: 100%; height: 220px; display: block; }
+.sd-chart-line { fill: none; stroke: #c81d1d; stroke-width: 3; }
+.sd-chart-baseline { stroke: #d9d9d9; stroke-dasharray: 6 6; }
+
+.sd-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  padding: 18px;
+}
+@media (max-width: 720px) {
+  .sd-stats { grid-template-columns: 1fr 1fr; }
+}
+
+.sd-stat-card {
+  background: #fff;
+  border: 1px solid #eee3d7;
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+.sd-stat-label { font-size: 12px; color: #7b6f62; }
+.sd-stat-value { font-size: 15px; font-weight: 700; color: #1f1f1f; }
+
+.sd-section { padding: 8px 18px 0; }
+.sd-sec-title { font-size: 14px; color: #6f675d; margin: 10px 0 8px; }
+.sd-list { background: #fff; border: 1px solid #eee3d7; border-radius: 10px; padding: 12px 14px; }
+.sd-list-item { line-height: 1.8; color: #2b2926; }
+
+.sd-quote {
+  margin: 22px 18px 0;
+  text-align: center;
+  background: #fff;
+  border: 1px solid #eee3d7;
+  border-radius: 12px;
+  padding: 18px 16px 22px;
+}
+.sd-quote-cap { color: #8a7b6a; font-size: 12px; margin-bottom: 8px; }
+.sd-quote blockquote {
+  font-size: 14px;
+  color: #2b2926;
+  margin: 0;
+}
+
+.sd-watch {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: #44403a;
+}
+.sd-watch-text { 
+  font-size: 12px;
+  font-family: 'Gowun Batang', 'Malgun Gothic', serif;
+ }
+.sd-seal {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #d91c1c;
+  color: #fff;
+  font-weight: 800;
+  font-size: 14px;
+  border: 2px solid #a50909;
+  transform: rotate(-10deg);
+  user-select: none;
+}
+.sd-watch.on .sd-seal {
+  filter: drop-shadow(0 2px 2px rgba(217,28,28,0.25));
+}
+
+/* ======================================= */
+/* src/assets/StockDetail.css 맨 아래 추가/수정 */
+/* ======================================= */
+
+.sd-add-portfolio {
+  background-color: #fdfdfd; /* 밝은 회색 배경 */
+  border-radius: 8px;
+  padding: 20px;
+  border: 1px solid #eee;
+}
+
+.sd-portfolio-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.sd-form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.sd-form-group label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.sd-form-group input {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: #fff;
+  font-family: 'Gowun Batang', 'Malgun Gothic', serif;
+}
+.sd-form-group input:focus {
+  border-color: #1e3c72; /* 포커스 시 테마 색상 */
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(30, 60, 114, 0.1);
+}
+
+/* (input[type=number] 스피너 제거) */
+.sd-form-group input::-webkit-outer-spin-button,
+.sd-form-group input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.sd-form-group input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* [수정] 버튼 디자인 통일 (네이비 색상) */
+.sd-add-btn {
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  background-color: #44403a; /* 메인 테마 색상 */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  text-align: center;
+  font-family: 'Gowun Batang', 'Malgun Gothic', serif;
+}
+
+.sd-add-btn:hover {
+  background-color: #2a5298; /* 호버 시 약간 밝게 */
+}

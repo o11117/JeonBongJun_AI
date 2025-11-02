@@ -1,0 +1,38 @@
+/* src/assets/ChatPage.css */
+
+:root {
+    --sidebar-width: 260px;
+    --nav-height: 80px;
+}
+
+.chat-layout-container {
+    position: relative;
+    display: flex;
+    width: 100vw;
+    max-width: 1280px;
+    height: calc(100vh - var(--nav-height) - 2rem); /* 🔥 네비 제외 */
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #ffffff;
+    transition: transform 0.3s ease;
+    font-family: 'Gowun Batang', 'Malgun Gothic', serif;
+}
+
+/* 🔥 사이드바 열렸을 때 컨테이너 전체가 이동 */
+.chat-layout-container.shifted {
+    width: calc(100% - var(--sidebar-width));
+    max-width: calc(1280px - var(--sidebar-width));
+}
+
+/* 메인 콘텐츠 */
+.main-content {
+    justify-content: center;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 20px 20px 20px 20px; /* 🔥 상단 여백 (햄버거 버튼 공간) */
+    box-sizing: border-box;
+    overflow-y: auto;
+}

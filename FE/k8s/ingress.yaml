@@ -1,0 +1,41 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: main-ingress
+  namespace: jeonbongjun
+  annotations:
+    # GKE Ingress Controller (L7 Load Balancer) 사용
+    kubernetes.io/ingress.class: "gce"
+spec:
+  rules:
+    - http:
+        paths:
+          # 1. AI 서버 라우팅 (경로: /ai/*)
+          # '/ai' 또는 '/ai/...'로 시작하는 모든 요청
+          - path: /ai/*
+            pathType: ImplementationSpecific # GKE는 Prefix 또는 ImplementationSpecific 사용
+            backend:
+              service:
+                name: ai-svc         # AI 서비스 (ai-service-service.yaml)
+                port:
+                  number: 8000      # ai-svc의 포트
+
+          # 2. 백엔드 라우팅 (경로: /api/*)
+          # '/api' 또는 '/api/...'로 시작하는 모든 요청
+          - path: /api/*
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: backend-svc    # 백엔드 서비스 (service.yaml)
+                port:
+                  number: 8080      # backend-svc의 포트
+
+          # 3. 프론트엔드 라우팅 (기본 경로: /*)
+          # 위 두 경로 외 모든 요청 (예: '/', '/chat', '/stocks' 등)
+          - path: /*
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: frontend-svc   # 프론트엔드 서비스 (frontend-service.yaml)
+                port:
+                  number: 80        # frontend-svc의 포트

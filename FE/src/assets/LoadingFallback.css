@@ -1,0 +1,10 @@
+.loading-fallback-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    /* 최소 높이를 뷰포트 높이로 설정 (네비게이션바 높이 64px 제외) */
+    min-height: calc(100vh - 64px);
+    /* 앱의 메인 배경색과 맞춤 */
+    background-color: #faf7f4;
+}

@@ -1,0 +1,175 @@
+/* src/components/ChatWindow.css (신규 - 이전 ChatPage.css의 내용) */
+
+:root {
+    --theme-primary-brown: #8d6e63;
+    --theme-primary-brown-darker: #795548;
+    --theme-light-bg: #f9f9f9;
+    --theme-light-border: #e0e0e0;
+    --theme-light-text: #213547;
+}
+
+/* ChatWindow가 부모(.chat-content-area)를 꽉 채우도록 수정
+  기존 .chat-window를 .chat-window-container로 변경
+*/
+.chat-window-container {
+    width: 100%;
+    height: 100%; /* 부모 높이를 꽉 채움 */
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    /* margin, border 등은 부모인 ChatPage.css가 담당하므로 제거 */
+    font-family: 'Gowun Batang', 'Malgun Gothic', serif;
+}
+
+/* --- 메시지 목록 --- */
+.message-list {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: var(--theme-light-bg);
+}
+
+.message {
+    padding: 0.8rem 1.2rem;
+    border-radius: 18px;
+    max-width: 75%;
+    line-height: 1.6;
+}
+
+.message-sender {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* 봇 메시지 (왼쪽 정렬) */
+.message-bot {
+    background-color: #ffffff;
+    color: var(--theme-light-text);
+    border: 1px solid var(--theme-light-border);
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+}
+.message-bot .message-sender {
+    color: var(--theme-primary-brown);
+}
+
+/* 사용자 메시지 (오른쪽 정렬) */
+.message-user {
+    background-color: var(--theme-primary-brown);
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+}
+.message-user .message-sender {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+
+/* --- 메시지 입력창 --- */
+.message-input-form {
+    display: flex;
+    padding: 1rem;
+    border-top: 1px solid var(--theme-light-border);
+    background-color: #ffffff;
+}
+
+.message-input {
+    flex-grow: 1;
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    border: 1px solid var(--theme-light-border);
+    border-radius: 8px;
+    background-color: var(--theme-light-bg);
+    color: var(--theme-light-text);
+    margin-right: 0.75rem;
+    font-family: 'Gowun Batang', 'Malgun Gothic', serif;
+}
+.message-input:focus {
+    outline: none;
+    border-color: var(--theme-primary-brown);
+    background-color: #ffffff;
+}
+
+.send-button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: var(--theme-primary-brown);
+    transition: background-color 0.2s;
+    font-family: 'Gowun Batang', 'Malgun Gothic', serif;
+}
+
+.send-button:hover {
+    background-color: var(--theme-primary-brown-darker);
+}
+
+/* src/assets/ChatWindow.css 에 추가 */
+
+/* 빈 채팅 상태 컨테이너 스타일 */
+.empty-chat-state {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* 수직 가운데 정렬 (메시지 리스트가 충분히 높을 경우) */
+    align-items: center; /* 수평 가운데 정렬 */
+    text-align: center;
+    height: 100%; /* message-list의 높이만큼 차지하도록 */
+    color: #888;
+    padding: 50px 20px; /* 위아래 패딩으로 공간 확보 */
+}
+
+.empty-chat-state .welcome-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    animation: bounce 0.5s infinite alternate; /* 움직이는 효과 추가 */
+}
+
+.empty-chat-state h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.empty-chat-state p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+/* 추천 질문 목록 스타일 */
+.suggestion-list {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0;
+}
+
+.suggestion-list li {
+    background: #f0f0f0; /* 배경색으로 구분 */
+    border-radius: 8px;
+    padding: 8px 15px;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.suggestion-list li:hover {
+    background: #e0e0e0;
+}
+
+/* 아이콘 애니메이션 (선택 사항) */
+@keyframes bounce {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-5px);
+    }
+}

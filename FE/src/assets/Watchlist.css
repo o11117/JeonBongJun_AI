@@ -1,0 +1,260 @@
+/* src/assets/Watchlist.css */
+.wl-wrap { max-width: 1080px; margin: 32px auto; padding: 0 16px; }
+.wl-title { font-size: 22px; font-weight: 700; margin-bottom: 16px; }
+
+.wl-skel, .wl-empty { padding: 24px; text-align: center; color: #666; border: 1px dashed #ddd; border-radius: 10px; }
+
+/* 페이지 레이아웃 */
+.wl-page {
+  padding: 24px 20px 80px;
+  background: #faf7f4; /* 아이보리 느낌 */
+  min-height: calc(100vh - 64px);
+  font-family: 'Gowun Batang', 'Malgun Gothic', serif;
+}
+
+.wl-header {
+  max-width: 1080px;
+  margin: 0 auto 16px;
+}
+
+.wl-h1 {
+  font-size: 24px;
+  font-weight: 800;
+  color: #2f251e;
+  margin: 0 0 12px;
+}
+
+/* ── 탭바 (피그마 스타일) ────────────────────────────── */
+.wl-tabbar {
+  position: relative;
+  display: inline-flex;
+  gap: 8px;
+  padding: 6px;
+  background: #fff;
+  border: 1px solid #eee4da;
+  border-radius: 999px;
+  box-shadow: 0 4px 16px rgba(44, 34, 24, 0.06);
+}
+
+.wl-pill {
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-weight: 700;
+  color: #6f6258;
+  transition: all .2s;
+  font-family: 'Gowun Batang', 'Malgun Gothic', serif;  
+}
+.wl-pill:hover { background: #f4efea; }
+.wl-pill.active { color: #fff; background: #5c4636; }
+
+/* 언더라인 인디케이터 (선택 시 아래에서 슥~) */
+.wl-underline {
+  position: absolute;
+  left: 6px;
+  right: calc(50% + 6px);
+  bottom: -2px;
+  height: 3px;
+  background: #5c4636;
+  border-radius: 999px;
+  transition: all .25s cubic-bezier(.4,.0,.2,1);
+}
+.wl-underline.watch { left: calc(50% + 6px); right: 6px; }
+
+/* ── 카드 컨테이너 ───────────────────────────────────── */
+.wl-card {
+  max-width: 1080px;
+  margin: 16px auto 0;
+  background: #fff;
+  border: 1px solid #eee4da;
+  border-radius: 14px;
+  box-shadow: 0 12px 28px rgba(44, 34, 24, 0.08);
+  overflow: hidden;
+}
+
+/* 테이블 헤더/로우 공통 */
+.wl-row {
+  display: grid;
+  /* [수정] 관심종목 (5열). 평가액 컬럼(.c-value)이 없으므로 5열 유지. */
+  grid-template-columns: 2fr 1.2fr 1.2fr 1fr .9fr; /* name price (value-hidden) change actions */
+  gap: 12px;
+  align-items: center; /* 세로 중앙 정렬 */
+  padding: 14px 18px;
+  border-top: 1px solid #f1e9e0;
+}
+.wl-row:first-child { border-top: 0; }
+
+.wl-head {
+  background: #fbf8f5;
+  font-weight: 800;
+  color: #6b5b51;
+}
+
+/* --- [수정] 보유 탭: 평가액/수량 칼럼 추가 → 그리드 6열로 재정의 --- */
+.wl-card:has(.wl-row .c-qty) .wl-row {
+  /* name price value qty change actions */
+  grid-template-columns: 2fr 1.2fr 1.2fr .9fr 1fr .9fr; /* 6열 */
+}
+
+/* --- [수정] 관심 종목 탭: 평가액 컬럼 숨기기 --- */
+/* (관심종목 탭에는 c-qty가 없으므로 c-value를 숨김) */
+.wl-card:not(:has(.wl-row .c-qty)) .c-value {
+  display: none;
+}
+
+
+/* ── [수정] 컬럼 정렬 ──────────────────────────────── */
+.c-name {
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+/* [신규] .c-value (평가액) 추가 */
+.c-price, .c-value, .c-qty, .c-change, .c-actions {
+  text-align: center; /* 가운데 정렬 */
+  font-variant-numeric: tabular-nums;
+}
+
+.c-actions {
+  text-align: center; /* 가운데 정렬 */
+  white-space: nowrap;
+}
+
+
+/* 링크/티커 */
+.wl-link {
+  font-weight: 800;
+  color: #2f251e;
+  text-decoration: none;
+}
+.wl-link:hover { text-decoration: underline; }
+.wl-ticker {
+  margin-left: 6px;
+  font-size: 12px;
+  color: #9b8f86;
+}
+
+/* 상승/하락 */
+.c-change.up   { color: #d23232; font-weight: 800; }
+.c-change.down { color: #1976d2; font-weight: 800; }
+
+/* ── [통합] 버튼 ───────────────────────────────────── */
+.wl-btn {
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid #e8ded5;
+  background: #fff;
+  color: #5a4a3f;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .2s;
+  font-size: 0.85rem;
+  margin-left: 5px;
+  font-family: 'Gowun Batang', 'Malgun Gothic', serif;
+}
+.wl-btn:hover { background: #f6f1ec; }
+
+/* [신규] 저장 버튼 (테마 색상) */
+.wl-btn.save {
+  background: #5c4636;
+  color: #fff;
+  border-color: #5c4636;
+}
+.wl-btn.save:hover {
+  background: #7a6a5b;
+}
+
+/* GHOST (취소) 버튼 */
+.wl-btn.ghost {
+  background: transparent;
+  border-color: transparent;
+  color: #5a4a3f;
+}
+.wl-btn.ghost:hover {
+  background: #f6f1ec;
+}
+
+/* [신규] GHOST + DANGER (삭제) 버튼 */
+.wl-btn.ghost.danger {
+  background: transparent;
+  border-color: transparent;
+  color: #b91c1c;
+}
+.wl-btn.ghost.danger:hover {
+  background: #fce9e9;
+  color: #a01010;
+}
+
+/* ── 로딩 / 비어있음 ──────────────────────────────── */
+.wl-skel, .wl-empty {
+  padding: 60px 28px;
+  text-align: center;
+  color: #7a6d63;
+}
+.wl-seal {
+  display: inline-block;
+  padding: 2px 6px;
+  border: 1px solid #e1d7cd;
+  border-radius: 6px;
+  background: #fbf8f5;
+  font-weight: 800;
+  letter-spacing: .15em;
+}
+
+/* ── 반응형 ───────────────────────────────────────── */
+@media (max-width: 720px) {
+  .wl-row { grid-template-columns: 1.6fr 1fr .8fr; }
+  .wl-row .c-actions { display: none; }
+  .wl-card:has(.wl-row .c-qty) .wl-row { grid-template-columns: 1.6fr 1fr .8fr; }
+
+  /* [추가] 모바일에서는 평가액 숨기기 */
+  .wl-row .c-value {
+    display: none;
+  }
+}
+
+/* ── [통합] 인라인 수정 기능 ────────────────────────── */
+
+/* 수정용 입력칸 */
+.wl-edit-input {
+  width: 100%;
+  padding: 6px;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  text-align: center;
+  font-family: 'Gowun Batang', 'Malgun Gothic', serif;
+}
+
+/* 수정 중인 행 강조 */
+.wl-row.editing {
+  background-color: #fdfbf9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+/* 수정 중일 때 종목명 클릭 방지 */
+.wl-link.disabled {
+  cursor: default;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 수익금 표시용 */
+.c-change span {
+  display: block;
+  line-height: 1.4;
+}
+.wl-profit-amt {
+  font-weight: 800;
+}
+.c-change span + span {
+  font-size: 0.9rem;
+  color: #6b5b51;
+}
+.c-change.down span + span {
+  color: #6b5b51;
+}

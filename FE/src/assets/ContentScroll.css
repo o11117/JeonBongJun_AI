@@ -1,0 +1,44 @@
+/* src/components/main/ContentScroll.css (테마 수정본) */
+:root {
+    --theme-primary-brown: #8d6e63;
+    --theme-light-text: #213547;
+    --theme-light-border: #e0e0e0;
+}
+
+.content-scroll-section {
+    width: 100%;
+    font-family: 'Gowun Batang', 'Malgun Gothic', serif;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: bold;
+    /* --- 테마 색상 적용 --- */
+    color: var(--theme-light-text);
+    margin-bottom: 1.5rem;
+    padding-left: 0.5rem;
+}
+
+.scroll-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 3rem;
+    padding: 0.5rem;
+    justify-content: center;
+    /* --- 스크롤바 테마 적용 (갈색) --- */
+    scrollbar-width: thin;
+    scrollbar-color: var(--theme-primary-brown) var(--theme-light-border);
+}
+
+/* Chrome/Safari용 스크롤바 */
+.scroll-container::-webkit-scrollbar {
+    height: 8px;
+}
+.scroll-container::-webkit-scrollbar-track {
+    background: var(--theme-light-border);
+    border-radius: 4px;
+}
+.scroll-container::-webkit-scrollbar-thumb {
+    background-color: var(--theme-primary-brown);
+    border-radius: 4px;
+}

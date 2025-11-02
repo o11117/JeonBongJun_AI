@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  namespace: jeonbongjun
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend-container
+          # !! image: 주소는 GitHub Actions에서 업데이트 예정 !!
+          image: o11117/frontend:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80 # Frontend Dockerfile에서 EXPOSE한 포트
+          # 필요하다면 ConfigMap에서 VITE_API_BASE_URL을 환경변수로 주입할 수 있으나,
+          # 빌드 시점에 결정되는 경우가 많음 (Dockerfile ARG 확인)
+          # env:
+          # - name: VITE_API_BASE_URL
+          #   valueFrom:
+          #     configMapKeyRef:
+          #       name: jeonbongjun-config
+          #       key: VITE_API_BASE_URL

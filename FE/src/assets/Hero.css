@@ -1,0 +1,54 @@
+/* src/components/main/Hero.css (이미지 주소 수정) */
+:root {
+    --theme-primary-brown: #8d6e63;
+    --theme-primary-brown-darker: #795548;
+    --theme-light-text: #213547;
+    --theme-light-beige-bg: #F9F6F1;
+}
+
+.hero-section {
+    width: 100%;
+    height: 400px;
+
+    /* --- 배경 이미지 수정 --- */
+    background-color: var(--theme-light-beige-bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    box-sizing: border-box;
+    border-radius: 12px;
+}
+
+/* ... (이하 동일) ... */
+.hero-content h1 {
+    font-size: 3.2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--theme-light-text);
+    font-family: 'Gowun Batang', 'Malgun Gothic', serif;
+}
+.hero-content p {
+  font-family: 'Gowun Batang', 'Malgun Gothic', serif;
+}
+
+/* ... */
+.hero-button {
+    padding: 12px 28px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 8px;
+    font-family: 'Gowun Batang', 'Malgun Gothic', serif;
+    background-color: var(--theme-primary-brown);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.hero-button:hover {
+    background-color: var(--theme-primary-brown-darker);
+}
