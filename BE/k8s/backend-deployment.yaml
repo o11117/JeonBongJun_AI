@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  namespace: jeonbongjun
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend-container
+          # !! image: 주소는 GitHub Actions에서 업데이트 예정 !!
+          image: o11117/backend:latest
+          ports:
+            - containerPort: 8080
+
+          readinessProbe:
+            httpGet:
+              path: /actuator/health # Spring Boot Actuator 헬스 체크 경로
+              port: 8080            # backend-svc 포트
+            initialDelaySeconds: 30 # DB/Redis 연결 시간 감안하여 30초 뒤 검사
+            periodSeconds: 10     # 10초마다 검사
+
+          env:
+            # --- Root 비밀번호 사용 ---
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: jeonbongjun-secrets
+                  key: MYSQL_ROOT_PASSWORD # Root 비밀번호 Secret 참조
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "root" # 사용자 이름을 'root'로 고정
+            - name: DEEPSEARCH_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jeonbongjun-secrets
+                  key: DEEPSEARCH_API_KEY
+            # --- ConfigMap 참조 ---
+            - name: MYSQL_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: jeonbongjun-config
+                  key: MYSQL_HOST # ConfigMap의 MYSQL_HOST (mariadb-svc)
+            - name: MYSQL_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: jeonbongjun-config
+                  key: MYSQL_PORT
+            - name: MYSQL_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: jeonbongjun-config
+                  key: MYSQL_DATABASE
+
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:mariadb://${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DATABASE}?useSSL=false&allowPublicKeyRetrieval=true"
+
+            - name: SPRING_DATA_REDIS_HOST
+              value: "redis-svc"
+            - name: SPRING_DATA_REDIS_PORT
+              value: "6379"
+
+            # [수정] AI_API_BASE_URL을 backend-container의 env 섹션으로 이동
+            - name: AI_API_BASE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: jeonbongjun-config
+                  key: AI_SERVICE_URL
+
